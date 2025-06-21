@@ -13,6 +13,7 @@ class Owner():
         for item in self.inventory:
             print(f"{item}: {self.inventory[item]}")
 
+
     def give_item(self, item_type):
         if item_type == "food":
             if self.inventory["food"] > 0:
@@ -25,6 +26,7 @@ class Owner():
                 self.pet.play()
             else:
                print("You have no toys!") 
+               
 
     def go_on_adventure(self):
         x = random.randint(1, 3)
