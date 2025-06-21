@@ -12,6 +12,7 @@ class Owner():
     def show_inventory(self):
         for item in self.inventory:
             print(f"{item}: {self.inventory[item]}")
+        input("\nYou check your bag. Press ENTER...")
 
 
     def give_item(self, item_type):
@@ -20,24 +21,25 @@ class Owner():
                 self.pet.feed()
                 self.inventory["food"] -= 1
             else:
-                print("You have no food!")
+                input("\nYou have no food! Press enter...")
         elif item_type == "toy":
             if self.inventory["toy"] > 0:
                 self.pet.play()
             else:
-               print("You have no toys!") 
-               
+                input("\nYou have no toys! Press enter...") 
+
 
     def go_on_adventure(self):
         x = random.randint(1, 3)
         if x == 1:
             self.inventory["food"] += 1 
-            print("You gained 1 food!")
+            print("\nYou gained 1 food!")
         elif x == 2:
             self.inventory["toy"] += 1
-            print("You gained 1 toy!")
+            print("\nYou gained 1 toy!")
         else:
-            print("You found nothing")
+            print("\nYou found nothing")
+        input("\nYou and your pet explore. Press enter...")
 
 
             

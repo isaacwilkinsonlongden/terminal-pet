@@ -8,32 +8,29 @@ from pet import Pet
 init()
 
 def main():
-    clear()
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-    pet_art = load_ascii_art("assets/ascii_dog.txt")
-
+    print("-----------------------------------------------------------")
     owner_name = input("Enter your name: ")
+    print("-----------------------------------------------------------")
     pet_name = input("Enter your pet's name: ")
     pet = Pet(pet_name, 5, 5, 5)
     owner = Owner(owner_name, pet)
 
-    while True:
-        clear()
+    pet_art = load_ascii_art("assets/ascii_dog.txt")
+    clear(pet, pet_art)
 
-        menu = [
-            "[1] Interact",
-            "[2] Inventory",
-            "[3] Adventure",
-            "[4] Quit"
-        ]
-        draw_game_screen(pet_art, menu)
+    while True:
+        clear(pet, pet_art)
 
         choice = input("\nChoose an option: ").strip().lower()
 
         if choice in ["4", "quit", "q"]:
             break
         elif choice in ["1", "interact"]:
-            pet_action = input("Feed, play, rest, or status? ").strip().lower()
+            clear(pet, pet_art)
+            pet_action = input("\nFeed, play, rest, or status? ").strip().lower()
+            clear(pet, pet_art)
             if pet_action == "feed":
                 owner.give_item("food")
             elif pet_action == "play":
@@ -42,17 +39,30 @@ def main():
                 pet.rest()
             elif pet_action == "status":
                 print(pet)
-            input("You interact with your pet. Press ENTER...")
+                print("-----------------------------------------------------------")
+                input("\nPress enter...")
         elif choice in ["2", "inventory"]:
+            clear(pet, pet_art)
             owner.show_inventory()
-            input("You check your bag. Press ENTER...")
         elif choice in ["3", "adventure"]:
+            clear(pet, pet_art)
             owner.go_on_adventure()
-            input("You and your pet explore. Press ENTER...")
 
 
-def clear():
+def clear(pet, pet_art):
     os.system('cls' if os.name == 'nt' else 'clear')
+    menu = [
+        "-----------------------------------------------------------",
+        f"{pet.name} Status:",
+        f"🍖 Hunger: {pet.hunger}  🎉 Happiness: {pet.happiness}  ⚡ Energy: {pet.energy}",
+        "",  # blank line
+        "[1] Interact",
+        "[2] Inventory",
+        "[3] Adventure",
+        "[4] Quit",
+        "-----------------------------------------------------------"
+    ]
+    draw_game_screen(pet_art, menu)
 
 
 if __name__ == "__main__":

@@ -8,32 +8,32 @@ class Pet():
 
     def feed(self):
         if self.hunger == 10:
-            print(f"{self.name} is full!")
+            input(f"\n{self.name} is full! Press enter...")
         else:
             self.hunger = min(self.hunger + 1, 10)
-            print(f"You fed {self.name}.")
+            input(f"\nYou fed {self.name}. Press enter...")
 
 
     def play(self):
         if self.energy == 0:
-            print(f"{self.name} doesn't have enough energy to play!")
+            input(f"\n{self.name} doesn't have enough energy to play! Press enter...")
         else:
             self.happiness = min(self.happiness + 1, 10)
             self.energy = max(self.energy - 1, 0)
-            print(f"You play with {self.name}.")
+            input(f"\nYou play with {self.name}. press enter...")
 
 
     def rest(self):
         if self.energy == 10:
-            print(f"{self.name} has too much energy to sleep!")
+            input(f"\n{self.name} has too much energy to sleep! Press enter...")
         else:
             self.energy = min(self.energy + 1, 10)
-            print(f"You put {self.name} to bed...")
+            input(f"\nYou put {self.name} to bed. Press enter...")
 
 
     def __str__(self):
         return (
-            f"Name: {self.name}\n"
+            f"\nName: {self.name}\n"
             f"Hunger: {self.hunger}\n"
             f"Happiness: {self.happiness}\n"
             f"Energy: {self.energy}"
