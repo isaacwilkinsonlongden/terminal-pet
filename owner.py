@@ -1,5 +1,6 @@
 import random
 from pet import Pet
+from minigames.numberGuessing import play_guessing_minigame
 
 
 class Owner():
@@ -30,16 +31,24 @@ class Owner():
 
 
     def go_on_adventure(self):
-        x = random.randint(1, 3)
-        if x == 1:
-            self.inventory["food"] += 1 
-            print("\nYou gained 1 food!")
-        elif x == 2:
-            self.inventory["toy"] += 1
-            print("\nYou gained 1 toy!")
+        print("You and your pet venture into the unknown...")
+        input("Press ENTER to continue...")
+
+        success = play_guessing_minigame()
+
+        if success:
+            self.inventory["food"] += 1
+            print("You gained 1 food!")
+
+            # Chance for rare item
+            if random.random() < 0.2:  # 20% chance
+                self.inventory["rare gem"] = self.inventory.get("rare gem", 0) + 1
+                print("You also found a mysterious rare gem!")
         else:
-            print("\nYou found nothing")
-        input("\nYou and your pet explore. Press enter...")
+            print("You return home with only memories...")
+
+        input("\nPress ENTER to return.")
+
 
 
             
